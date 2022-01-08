@@ -1,0 +1,47 @@
+<mat-card>Ingrese los datos de la cuenta:</mat-card>
+
+<form class="example-container" [formGroup]="form" #frmCliente="ngForm" (ngSubmit)="operar()">
+
+    <div [hidden]="true">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="ID" required formControlName="id">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="No. Cuenta" required formControlName="noCuenta">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Cuenta</mat-label>
+      <mat-select required formControlName="id_tipoCuenta">
+        <mat-option *ngFor="let cuenta of tiposCuenta" [value]="cuenta.idTipoCuenta">
+          {{cuenta.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cliente</mat-label>
+      <mat-select required formControlName="id_Cliente">
+        <mat-option *ngFor="let cliente of clientes" [value]="cliente.idCliente">
+          {{cliente.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Saldo" required formControlName="saldo" type="number">
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="frmCliente.invalid">
+      <mat-icon>done</mat-icon>
+      <span>Aceptar</span>
+    </button>
+    <button mat-raised-button color="accent" routerLink='/cuentas' type="button">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+    </button>
+  </form>

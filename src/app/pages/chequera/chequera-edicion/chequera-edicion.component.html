@@ -1,0 +1,38 @@
+<mat-card>Ingrese los datos de la chequera:</mat-card>
+
+<form class="example-container" [formGroup]="form" #frmCliente="ngForm" (ngSubmit)="operar()">
+
+    <div [hidden]="true">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="ID" required formControlName="id">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="No. Chequera" required formControlName="noChequera">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Cant. Cheques" required formControlName="cantidadCheques" type="number">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cuenta</mat-label>
+      <mat-select required formControlName="id_cuenta">
+        <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.idCuentaBancaria">
+          {{cuenta.noCuenta}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="frmCliente.invalid">
+      <mat-icon>done</mat-icon>
+      <span>Aceptar</span>
+    </button>
+    <button mat-raised-button color="accent" routerLink='/chequeras' type="button">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+    </button>
+  </form>
